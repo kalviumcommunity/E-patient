@@ -23,6 +23,15 @@ router.get('/users', async (req, res) => {
     }
 });
 
+router.post('/signup', async (req, res) => {
+    try {
+        const newUser = new Members(req.body);
+        await newUser.save();
+        res.status(201).json(newUser);
+    } catch (error) {
+        res.status(400).send('Failed to create user.');
+    }
+});
 
 
 connectDB()
