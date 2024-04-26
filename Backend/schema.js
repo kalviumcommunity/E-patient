@@ -23,5 +23,6 @@ const data = new mongoose.Schema({
     
 })
 const dataSet = mongoose.model('User',data);
+console.log(data)
 
 module.exports = dataSet
