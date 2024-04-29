@@ -77,3 +77,34 @@ form {
   top: 10px;
   right: 10px;
 }
+.header{
+  font-size: 4vw;
+  color: #0056b3;
+}
+.success-message {
+  display: none;
+  position: relative;
+}
+
+.success-message.show {
+  display: block;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+.line-animation {
+  width: 0;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: lineAnimation 3s linear forwards;
+}
+
+@keyframes lineAnimation {
+  to {
+    width: 100%;
+  }
+}

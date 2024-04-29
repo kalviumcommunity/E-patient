@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 function SignUp() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Username: "",
     Email: "",
@@ -13,6 +14,17 @@ function SignUp() {
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    let timeout;
+    if (showSuccess) {
+      timeout = setTimeout(() => {
+        navigate("/open");
+      }, 3000);
+    }
+    return () => clearTimeout(timeout);
+  }, [showSuccess, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,7 +60,7 @@ function SignUp() {
         Age: "",
         Gender: ""
       });
-      history.push("/open");
+      setShowSuccess(true);
     } catch (error) {
       console.error("Failed to create user:", error);
       setErrorMessage("Failed to create user. Please try again later.");
@@ -60,7 +72,10 @@ function SignUp() {
     <div className="container">
       <h2>Sign Up</h2>
       {successMessage && (
-        <div className="success-message">{successMessage}</div>
+        <div className={`success-message ${showSuccess ? 'show' : ''}`}>
+          {successMessage}
+          <div className="line-animation"></div>
+        </div>
       )}
       {errorMessage && (
         <div className="error-message">{errorMessage}</div>
