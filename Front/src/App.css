@@ -108,3 +108,60 @@ form {
     width: 100%;
   }
 }
+/* .main{
+  background-color: #f9f9f9;
+} */
+.logo-img{
+  display: flex;
+  align-items: center;
+}
+.logo-img img{
+  width: 5.5vw;
+  height: 4vw;
+}
+.logo-img p{
+  font-size: 2vw;
+}
+.options{
+  display: flex;
+  align-items: center;
+}
+ul{
+  list-style: none;
+}
+li{
+  padding-right: 2vw;
+}
+.list{
+  display: flex;
+  align-items: center;
+}
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+}
+.poster{
+  width: 100vw;
+  height: 27vw;
+
+}
+.doc-patient{
+  width: 100%;
+  height: 30vw;
+  position: fixed;
+  top: 15vw;
+  right: 0;
+  z-index: 10;
+}
+.poster-text{
+  font-size: 4vw;
+  width: 45vw;
+  height: 10vw;
+}
