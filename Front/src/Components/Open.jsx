@@ -1,6 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Open() {
+  const navigate = useNavigate();
+
+  const handleBookAppointment = () => {
+    navigate('/book');
+  };
+
   return (
     <div className='main'>
       <div className='nav'>
@@ -15,16 +22,15 @@ function Open() {
                   <li>Profile</li>
               </ul>
               <div>
-                  <button>Book Appointment</button>
+                  <button onClick={handleBookAppointment}>Book Appointment</button>
               </div>
            </div>
       </div>
       <div className='poster'>
-      <img src='../src/assets/back.jpg'  alt='doc-patient' className='doc-patient' />
-
+        <img src='../src/assets/back.jpg'  alt='doc-patient' className='doc-patient' />
       </div>
     </div>
-  )
+  );
 }
 
-export default Open
+export default Open;
