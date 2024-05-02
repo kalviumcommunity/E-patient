@@ -1,51 +1,42 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { StaticDatePicker } from '@mui/x-date-pickers'
+import Badge from '@mui/material/Badge';
+import CheckIcon from '@mui/icons-material/Check';
+import { LocalizationProvider } from '@mui/x-date-pickers'
 
 const Calendar = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
-
-  const handleDateChange = date => {
-    setSelectedDate(date);
-  };
-
-  const handleTimeSelection = time => {
-    setSelectedTime(time);
-  };
-
-  const handleBooking = () => {
-    if (selectedDate && selectedTime) {
-      console.log('Booking slot:', selectedDate, selectedTime);
-    } else {
-      alert('Please select both date and time.');
-    }
-  };
+  const [value, setValue] = useState(new Date());
+  const [highlightedDays, setHighlightedDays] = useState([1, 2, 13]);
 
   return (
-    <div className="calendar">
-      <h2>Book Appointment</h2>
-      <div>
-        <DatePicker
-          selected={selectedDate}
-          onChange={handleDateChange}
-          dateFormat="MMMM d, yyyy"
-          minDate={new Date()}
-          placeholderText="Select a date"
-        />
-      </div>
-      {selectedDate && (
-        <div className="time-slots">
-          <h3>Select a Time Slot</h3>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <StaticDatePicker
+        orientation="portrait"
+        openTo="day"
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
+        textField={(params) => <TextField {...params} />}
+        renderDay={(day, _value, DayComponentProps) => {
+          const isSelected =
+            !DayComponentProps.outsideCurrentMonth &&
+            highlightedDays.indexOf(day.getDate()) >= 0;
 
-            <button onClick={() => handleTimeSelection('09:00 AM')}>09:00 AM</button>
-            <button onClick={() => handleTimeSelection('10:00 AM')}>10:00 AM</button>
-            <button onClick={() => handleTimeSelection('11:00 AM')}>11:00 AM</button>
-
-        </div>
-      )}
-      <button onClick={handleBooking}>Book Appointment</button>
-    </div>
+          return (
+            <Badge
+              key={day.toString()}
+              overlap="circular"
+              badgeContent={isSelected ? <CheckIcon color="error" /> : null}
+            >
+              <DayComponentProps.dateTypography component="div">
+                {day.getDate()}
+              </DayComponentProps.dateTypography>
+            </Badge>
+          );
+        }}
+      />
+    </LocalizationProvider>
   );
 };
 

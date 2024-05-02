@@ -80,7 +80,7 @@ function SignUp() {
       {errorMessage && (
         <div className="error-message">{errorMessage}</div>
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="data">
         <input type="text" name="Username" placeholder="Username" value={formData.Username} onChange={handleChange} className="input-field" />
         <input type="email" name="Email" placeholder="Email" value={formData.Email} onChange={handleChange} className="input-field" />
         <input type="password" name="Password" placeholder="Password" value={formData.Password} onChange={handleChange} className="input-field" />
@@ -94,7 +94,6 @@ function SignUp() {
         <button type="submit" className="submit-button">Sign Up</button>
       </form>
     </div>
-    <div className="side"></div>
     </div>
   );
 }
