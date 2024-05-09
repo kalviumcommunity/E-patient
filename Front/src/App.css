@@ -4,7 +4,10 @@
   padding: 2rem;
   text-align: center;
 } */
-
+.appoint{
+  background-color: #2aa848;
+  color: whitesmoke;
+}
 .container {
   position: fixed;
   top: 10vw;
@@ -153,6 +156,9 @@ li{
   display: flex;
   align-items: center;
 }
+.list :hover{
+  color: #309a37;
+}
 .nav{
   display: flex;
   align-items: center;
@@ -188,6 +194,11 @@ li{
   color: orange;
 }
 
+.check{
+  position: fixed;
+  top: 25%;
+  left: 40%;
+}
 .css-u0soqy-MuiPickerStaticWrapper-root {
   box-shadow: 3px 2px 10px 5px #888888 !important;
 }
