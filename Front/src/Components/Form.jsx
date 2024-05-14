@@ -15,6 +15,7 @@ const Form = ({ visibility }) => {
         gender: '',
         age: '',
         email: '',
+        doctor: '',
         dateOfBirth: dayjs(),
     });
 
@@ -77,6 +78,16 @@ const Form = ({ visibility }) => {
                     value={formData.age}
                     onChange={handleChange}
                 />
+                <select
+                    name='doctor'
+                    value={formData.doctor}
+                    onChange={handleChange}
+                >
+                    <option value=''>Select Doctor</option>
+                    <option value='doc1'>doc1</option>
+                    <option value='doc2'>doc2</option>
+                    <option value='doc3'>doc3</option>
+                </select>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer
                         components={[
