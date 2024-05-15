@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const Members = require('./schema.js')
+const Appointment = require('./Appointment');
 const mongoose=require('mongoose')
 require('dotenv').config()
 router.use(express.json());
@@ -30,6 +31,15 @@ router.post('/signup', async (req, res) => {
         res.status(201).json(newUser);
     } catch (error) {
         res.status(400).send('Failed to create user.');
+    }
+});
+router.post('/create-appointment', async (req, res) => {
+    try {
+        const newAppointment = new Appointment(req.body); 
+        await newAppointment.save(); 
+        res.status(201).json(newAppointment); 
+    } catch (error) {
+        res.status(400).send('Failed to create appointment.'); 
     }
 });
 
