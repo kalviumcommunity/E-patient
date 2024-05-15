@@ -8,6 +8,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
 import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
+import axios from "axios";
+
 
 const Form = ({ visibility }) => {
     const [formData, setFormData] = useState({
@@ -34,11 +36,19 @@ const Form = ({ visibility }) => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData); 
+        try {
+            await axios.post("http://localhost:8080/api/create-appointment", formData);
+            console.log("posted successfully!!");
+          } catch (error) {
+            console.error("Failed to create user:", error);
+            setErrorMessage("Failed to create user. Please try again later.");
+          }
     };
 
+    
     return (
         <div style={{ display: visibility }} className='check'> 
             
