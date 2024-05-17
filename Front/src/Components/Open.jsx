@@ -10,6 +10,10 @@ function Open() {
     setVisibility(visibility === 'none' ? 'flex' : 'none');
   };
 
+  const handleDoctorsClick = () => {
+    navigate('/doctors');
+  };
+
   return (
     <div className='main'>
       <div className='nav'>
@@ -19,7 +23,7 @@ function Open() {
         </div>
         <div className='options'>
           <ul className='list'>
-            <li>Doctors</li>
+            <li onClick={handleDoctorsClick}>Doctors</li>
             <li>Prescription</li>
             <li>Profile</li>
           </ul>
@@ -28,7 +32,7 @@ function Open() {
               Book Appointment
             </button>
           </div>
-          <Form visibility={visibility}/>
+          <Form visibility={visibility} />
         </div>
       </div>
     </div>
@@ -36,3 +40,4 @@ function Open() {
 }
 
 export default Open;
+

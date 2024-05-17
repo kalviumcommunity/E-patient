@@ -70,16 +70,7 @@ const Form = ({ visibility }) => {
                     value={formData.email}
                     onChange={handleChange}
                 />
-                <select
-                    name='gender'
-                    value={formData.gender}
-                    onChange={handleChange}
-                >
-                    <option value=''>Select Gender</option>
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
-                    <option value='other'>Other</option>
-                </select>
+                
                 <input
                     className='data'
                     type='number'
@@ -89,6 +80,18 @@ const Form = ({ visibility }) => {
                     onChange={handleChange}
                 />
                 <select
+                className='data'
+                    name='gender'
+                    value={formData.gender}
+                    onChange={handleChange}
+                >
+                    <option value=''>Select Gender</option>
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='other'>Other</option>
+                </select>
+                <select
+                className='data'
                     name='doctor'
                     value={formData.doctor}
                     onChange={handleChange}
@@ -98,8 +101,8 @@ const Form = ({ visibility }) => {
                     <option value='doc2'>doc2</option>
                     <option value='doc3'>doc3</option>
                 </select>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer
+                <LocalizationProvider dateAdapter={AdapterDayjs} >
+                    <DemoContainer className='data'
                         components={[
                             'MobileDatePicker',
                             'DesktopTimePicker',
