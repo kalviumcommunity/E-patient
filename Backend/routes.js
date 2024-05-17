@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router();
 const Members = require('./schema.js')
 const Appointment = require('./Appointment');
-const mongoose=require('mongoose')
+const Doctor=require('./Doctor.js');
+const mongoose=require('mongoose');
 require('dotenv').config()
 router.use(express.json());
 const connectDB = async()=>{
@@ -14,6 +15,15 @@ const connectDB = async()=>{
         console.log("Connection Failed:", err);
     }
 }
+router.get('/doctors',async(req,res)=>{
+    try{
+        const doc=await Doctor.find({});
+        res.json(doc);
+    }
+    catch(err){
+        res.status(500).send("error occured while fetching docters")
+    };
+})
 
 router.get('/users', async (req, res) => {
     try {
