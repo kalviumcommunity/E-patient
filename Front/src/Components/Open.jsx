@@ -35,6 +35,23 @@ function Open() {
           <Form visibility={visibility} />
         </div>
       </div>
+      <div className='Doclist'>
+        <div className='docbox' onClick={handleDoctorsClick}>
+          Cardiologist
+        </div>
+        <div className='docbox' onClick={handleDoctorsClick}>
+          Psycatrist
+        </div>
+        <div className='docbox' onClick={handleDoctorsClick}>
+          Orthopedic
+        </div>
+        <div className='docbox' onClick={handleDoctorsClick}>
+          Urologist
+        </div>
+        <div className='docbox' onClick={handleDoctorsClick}>
+          General
+        </div>
+      </div>
     </div>
   );
 }

@@ -247,3 +247,21 @@ li{
   background-color: #f4f4f4;
   margin-bottom: 1rem;
 }
+.Doclist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 15vw; 
+  padding: 2vw; 
+}
+
+.docbox {
+  width: 4vw;
+  height: 4vw;
+  border-radius: 1vw;
+  background-color: #2aa848;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
