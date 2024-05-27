@@ -249,7 +249,7 @@ li{
 }
 .Doclist {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
   gap: 15vw; 
@@ -257,11 +257,12 @@ li{
 }
 
 .docbox {
-  width: 4vw;
+  width: 6vw;
   height: 4vw;
   border-radius: 1vw;
   background-color: #2aa848;
   display: flex;
+  color: white;
   justify-content: center;
   align-items: center; 
 }

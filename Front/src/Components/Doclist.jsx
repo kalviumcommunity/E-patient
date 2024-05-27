@@ -30,6 +30,7 @@ function Doclist() {
             <p>Experience: {doctor.Experience} years</p>
           </div>
         ))}
+        <div><button>Chat</button></div>
       </div>
     </div>
   );
