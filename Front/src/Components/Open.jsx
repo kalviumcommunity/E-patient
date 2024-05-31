@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from './Form';
 
-function Open() {
+function Open({ handleSignOut }) {
   const navigate = useNavigate();
   const [visibility, setVisibility] = useState('none');
 
@@ -13,6 +13,10 @@ function Open() {
   const handleDoctorsClick = () => {
     navigate('/doctors');
   };
+  const logout =()=>{
+    localStorage.clear()
+    window.location.reload()
+}
 
   return (
     <div className='main'>
@@ -35,12 +39,13 @@ function Open() {
           <Form visibility={visibility} />
         </div>
       </div>
+      <button onClick={logout}>Logout</button>
       <div className='Doclist'>
         <div className='docbox' onClick={handleDoctorsClick}>
           Cardiologist
         </div>
         <div className='docbox' onClick={handleDoctorsClick}>
-          Psycatrist
+          Psychiatrist
         </div>
         <div className='docbox' onClick={handleDoctorsClick}>
           Orthopedic
@@ -57,4 +62,3 @@ function Open() {
 }
 
 export default Open;
-

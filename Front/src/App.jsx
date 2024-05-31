@@ -10,15 +10,16 @@ import SignIn from './Components/SignIn.jsx';
 
 function App() {
   return (
-    // <Router>
-    //   <Routes>
-    //     <Route exact path="/signup" element={<SignUp />} />
-    //     <Route path="/" element={<Open />} />
-    //     <Route path='/doctors' element={<Doclist />} />
-    //     <Route path='/confrence' element={<Vedio />}/>
-    //   </Routes>
-    // </Router>
-    <SignIn/>
+    <Router>
+      <Routes>
+        <Route exact path="/signup" element={<SignUp />} />
+        <Route path="/" element={<Open />} />
+        <Route path='/doctors' element={<Doclist />} />
+        <Route path='/confrence' element={<Vedio />}/>
+        <Route path='/signin' element={<SignIn />} />
+      </Routes>
+    </Router>
+    
     
   );
 }

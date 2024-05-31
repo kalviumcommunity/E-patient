@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { auth, provider } from "../../../Backend/Config";
+import { auth, provider } from "./Config";
 import { signInWithPopup } from "firebase/auth";
 import Open from "./Open";
 
 function SignIn() {
     const [value, setValue] = useState('');
 
-    const handleClick = () => {
+    const handleSignIn = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const userEmail = result.user.email;
@@ -18,16 +18,22 @@ function SignIn() {
             });
     };
 
+
+
     useEffect(() => {
         const storedEmail = localStorage.getItem('email');
         if (storedEmail) {
             setValue(storedEmail);
         }
-    }, []); 
+    }, []);
 
     return (
         <div>
-            {value ? <Open /> : <button onClick={handleClick}>Sign in with Google</button>}
+            {value ? (
+                <Open />
+            ) : (
+                <button onClick={handleSignIn}>Sign in with Google</button>
+            )}
         </div>
     );
 }
