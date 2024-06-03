@@ -52,8 +52,17 @@ router.post('/create-appointment', async (req, res) => {
         res.status(400).send('Failed to create appointment.'); 
     }
 });
+router.post(
+    "/add-user",
+    uploadFileTypeValidate,
+    validateFileSize,
+    (req, res, next) => {
+      uploadFileToFirebase("profile", req, res, next);
+    },
+    addUser
+  );
 
 
 connectDB()
 
-module.exports = router
+module.exports = router 
