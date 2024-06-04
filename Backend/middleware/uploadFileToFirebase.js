@@ -1,11 +1,11 @@
-import {
+const {
     getStorage,
     ref,
     getDownloadURL,
     uploadBytesResumable,
-  } from "firebase/storage";
-  import firebaseConfig from "../Config.js";
-  import { initializeApp } from "firebase/app";
+  } =require("firebase/storage");
+  const firebaseConfig =require("../Config.js");
+  const { initializeApp } =require("firebase/app");
 
   
   initializeApp(firebaseConfig.firebaseConfig);
@@ -58,4 +58,4 @@ import {
     }
   }
   
-  export default uploadFileToFirebase;
+  module.exports = uploadFileToFirebase;

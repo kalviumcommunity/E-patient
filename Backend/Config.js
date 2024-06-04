@@ -1,23 +1,22 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-
+const { initializeApp } = require("firebase/app");
+const { getAuth, GoogleAuthProvider } = require("firebase/auth");
+require('dotenv').config();
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
-  authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_REACT_APP_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_REACT_APP_APP_ID,
-  measurementId: import.meta.env.VITE_REACT_APP_MEASUREMENT_ID
+  apiKey: process.env.VITE_REACT_APP_API_KEY,
+  authDomain: process.env.VITE_REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.VITE_REACT_APP_PROJECT_ID,
+  storageBucket: process.env.VITE_REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.VITE_REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.VITE_REACT_APP_APP_ID,
+  measurementId: process.env.VITE_REACT_APP_MEASUREMENT_ID
 };
 
-console.log(firebaseConfig)
-
-console.log(import.meta.env)
+console.log(firebaseConfig);
+// console.log(process.env);
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export { auth, provider,firebaseConfig };
+module.exports = { auth, provider, firebaseConfig };
