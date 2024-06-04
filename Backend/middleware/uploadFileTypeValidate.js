@@ -1,4 +1,4 @@
-import multer from "multer";
+const multer = require('multer')
 
 const multerStorage = multer.memoryStorage();
 
@@ -53,4 +53,4 @@ const validateFileSize = (req, res, next) => {
   next();
 };
 
-export { uploadFileTypeValidate, validateFileSize };
+return { uploadFileTypeValidate, validateFileSize };

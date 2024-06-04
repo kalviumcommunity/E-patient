@@ -1,29 +1,32 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
-const Members = require('./schema.js')
+const Members = require('./schema.js');
 const Appointment = require('./Appointment');
-const Doctor=require('./Doctor.js');
-const mongoose=require('mongoose');
-require('dotenv').config()
+const Doctor = require('./Doctor.js');
+const mongoose = require('mongoose');
+const { uploadFileTypeValidate, validateFileSize } = require('./middleware/uploadFileTypeValidate.js');
+const uploadFileToFirebase = require('./middleware/uploadFileToFirebase.js');
+
+require('dotenv').config();
 router.use(express.json());
-const connectDB = async()=>{
-    try{
-        await mongoose.connect(process.env.DB_URI)
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.DB_URI);
         console.log("Mongo Connected");
-    }
-    catch(err){
+    } catch (err) {
         console.log("Connection Failed:", err);
     }
-}
-router.get('/doctors',async(req,res)=>{
-    try{
-        const doc=await Doctor.find({});
+};
+
+router.get('/doctors', async (req, res) => {
+    try {
+        const doc = await Doctor.find({});
         res.json(doc);
+    } catch (err) {
+        res.status(500).send("Error occurred while fetching doctors");
     }
-    catch(err){
-        res.status(500).send("error occured while fetching docters")
-    };
-})
+});
 
 router.get('/users', async (req, res) => {
     try {
@@ -43,26 +46,26 @@ router.post('/signup', async (req, res) => {
         res.status(400).send('Failed to create user.');
     }
 });
+
 router.post('/create-appointment', async (req, res) => {
     try {
-        const newAppointment = new Appointment(req.body); 
-        await newAppointment.save(); 
-        res.status(201).json(newAppointment); 
+        const newAppointment = new Appointment(req.body);
+        await newAppointment.save();
+        res.status(201).json(newAppointment);
     } catch (error) {
-        res.status(400).send('Failed to create appointment.'); 
+        res.status(400).send('Failed to create appointment.');
     }
 });
+
 router.post(
     "/add-user",
     uploadFileTypeValidate,
     validateFileSize,
     (req, res, next) => {
-      uploadFileToFirebase("profile", req, res, next);
-    },
-    addUser
-  );
+        uploadFileToFirebase("profile", req, res, next);
+    }
+);
 
+connectDB();
 
-connectDB()
-
-module.exports = router 
+module.exports = router;
