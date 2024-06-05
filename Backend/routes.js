@@ -4,8 +4,6 @@ const Members = require('./schema.js');
 const Appointment = require('./Appointment');
 const Doctor = require('./Doctor.js');
 const mongoose = require('mongoose');
-const { uploadFileTypeValidate, validateFileSize } = require('./middleware/uploadFileTypeValidate.js');
-const uploadFileToFirebase = require('./middleware/uploadFileToFirebase.js');
 
 require('dotenv').config();
 router.use(express.json());
@@ -57,14 +55,6 @@ router.post('/create-appointment', async (req, res) => {
     }
 });
 
-router.post(
-    "/add-user",
-    uploadFileTypeValidate,
-    validateFileSize,
-    (req, res, next) => {
-        uploadFileToFirebase("profile", req, res, next);
-    }
-);
 
 connectDB();
 

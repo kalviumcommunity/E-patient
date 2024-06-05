@@ -13,6 +13,9 @@ function Open({ handleSignOut }) {
   const handleDoctorsClick = () => {
     navigate('/doctors');
   };
+  const handlePrescription = () => {
+    navigate('/upload');
+  };
   const logout =()=>{
     localStorage.clear()
     window.location.reload()
@@ -28,7 +31,7 @@ function Open({ handleSignOut }) {
         <div className='options'>
           <ul className='list'>
             <li onClick={handleDoctorsClick}>Doctors</li>
-            <li>Prescription</li>
+            <li onClick={handlePrescription}>Prescription</li>
             <li>Profile</li>
           </ul>
           <div>
