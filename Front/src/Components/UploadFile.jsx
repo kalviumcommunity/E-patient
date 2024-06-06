@@ -1,28 +1,47 @@
-
 import { useState, useEffect } from "react";
-import {ref,uploadBytes} from "firebase/storage";
+import { uploadBytes, ref, getDownloadURL, listAll } from "firebase/storage";
 import { storage } from "./Config";
 import { v4 } from "uuid";
 
-function UploadFile(){
-    const [imageUpload, setImageUpload] = useState(null);
+function UploadFile() {
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
 
-    const imagesListRef = ref(storage, "images/");
-  const uploadImage = () => {
+  const imagesListRef = ref(storage, "Group/");
+  const uploadFile = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef,imageUpload).then(()=>{
-        alert("Uploaded Successfully")
-    })
+    const imageRef = ref(storage, `Group/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((data) => {
+      getDownloadURL(data.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
+  };
 
+  useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
+  return (
+    <div>
+      <input
+        type="file"
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
+      />
+      <button onClick={uploadFile}> Upload Image</button>
+      {imageUrls.map((url) => {
+        return <img key={url} src={url} alt="uploaded" className="uploded-img" />;
+      })}
+    </div>
+  );
 }
 
-
-    return(
-        <div>
-         <input type="file" onChange={(event)=>{setImageUpload(event.target.files[0])}}/>
-         <button onClick={uploadImage}>Upload</button>
-        </div>
-    )
-}
 export default UploadFile;
