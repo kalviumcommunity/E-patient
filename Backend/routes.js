@@ -4,6 +4,24 @@ const Members = require('./schema.js');
 const Appointment = require('./Appointment');
 const Doctor = require('./Doctor.js');
 const mongoose = require('mongoose');
+const Joi = require('joi');
+
+const appointmentValidationSchema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    doctor: Joi.string().required(),
+    age: Joi.number().integer().min(0).required(),
+    gender: Joi.string().optional(),
+    dateOfBirth: Joi.string().optional()
+});
+const validation = (input) => {
+    const { error } = appointmentValidationSchema.validate(input);
+    if (error) {
+        return false;
+    } else {
+        return true;
+    }
+};
 
 require('dotenv').config();
 router.use(express.json());
@@ -46,8 +64,15 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/create-appointment', async (req, res) => {
+    
+    const { error, value } = appointmentValidationSchema.validate(req.body);
+
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
     try {
-        const newAppointment = new Appointment(req.body);
+        const newAppointment = new Appointment(value);
         await newAppointment.save();
         res.status(201).json(newAppointment);
     } catch (error) {
