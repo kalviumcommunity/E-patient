@@ -10,18 +10,10 @@ const appointmentValidationSchema = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
     doctor: Joi.string().required(),
-    age: Joi.number().integer().min(0).required(),
+    age: Joi.string().required(),
     gender: Joi.string().optional(),
     dateOfBirth: Joi.string().optional()
 });
-const validation = (input) => {
-    const { error } = appointmentValidationSchema.validate(input);
-    if (error) {
-        return false;
-    } else {
-        return true;
-    }
-};
 
 require('dotenv').config();
 router.use(express.json());
@@ -68,9 +60,10 @@ router.post('/create-appointment', async (req, res) => {
     const { error, value } = appointmentValidationSchema.validate(req.body);
 
     if (error) {
-        return res.status(400).send(error.details[0].message);
+        console.log(error);
+        return res.send("Invalid request");
     }
-
+res.send("successful")
     try {
         const newAppointment = new Appointment(value);
         await newAppointment.save();
