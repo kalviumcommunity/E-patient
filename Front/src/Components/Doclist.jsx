@@ -28,9 +28,9 @@ function Doclist() {
             <p>Branch: {doctor.Branch}</p>
             <p>Hospital: {doctor.Hospital}</p>
             <p>Experience: {doctor.Experience} years</p>
+            <div><button>Chat</button></div>
           </div>
         ))}
-        <div><button>Chat</button></div>
       </div>
     </div>
   );
