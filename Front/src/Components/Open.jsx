@@ -23,6 +23,7 @@ function Open({ handleSignOut }) {
 
   return (
     <div className='main'>
+      <img src="../src/assets/backimg.jpg" alt="background" className='background'/>
       <div className='nav'>
         <div className='logo-img'>
           <img src='../src/assets/logo.png' alt='Logo' />
@@ -39,11 +40,15 @@ function Open({ handleSignOut }) {
               Book Appointment
             </button>
           </div>
+          <br/>
+          <div>
+          <button onClick={logout}>Logout</button>
+          </div>
           <Form visibility={visibility} />
         </div>
       </div>
-      <button onClick={logout}>Logout</button>
-      <div className='Doclist'>
+      {/* <button onClick={logout}>Logout</button> */}
+      {/* <div className='Doclist'>
         <div className='docbox' onClick={handleDoctorsClick}>
           Cardiologist
         </div>
@@ -59,7 +64,7 @@ function Open({ handleSignOut }) {
         <div className='docbox' onClick={handleDoctorsClick}>
           General
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
