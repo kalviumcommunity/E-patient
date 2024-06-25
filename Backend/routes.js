@@ -86,6 +86,11 @@ res.status(201).json(newAppointment);
 res.status(400).send('Failed to create appointment.');
 }
 });
+router.post('/logout', (req, res) => {
+
+    res.status(200).send('Logged out successfully');
+  });
+  
 
 connectDB();
 
