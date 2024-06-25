@@ -18,8 +18,6 @@ function SignIn() {
             });
     };
 
-
-
     useEffect(() => {
         const storedEmail = localStorage.getItem('email');
         if (storedEmail) {
@@ -30,7 +28,7 @@ function SignIn() {
     return (
         <div>
             {value ? (
-                <Open />
+                <Open userEmail={value} />
             ) : (
                 <button onClick={handleSignIn}>Sign in with Google</button>
             )}
